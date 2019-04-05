@@ -28,8 +28,13 @@ def drop_piece(board, row, column, piece):
     board[row][column] = piece
 
 
+def print_board(board):
+    """Change orientation so board is oriented same as the actual Connect Four game with row 0 on bottom."""
+    print(np.flip(board, 0))
+
+
 board = create_board()
-print(board)
+print_board(board)
 game_over = False
 turn = 0
 
@@ -52,6 +57,6 @@ while not game_over:
             row = get_next_open_row(board, column)
             drop_piece(board, row, column, 2)
 
-    print(board)
+    print_board(board)
     turn += 1
     turn = turn % 2  # to alternate between player 1 and player 2
