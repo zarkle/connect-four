@@ -19,16 +19,17 @@ def is_valid_column(board, column):
 def get_next_open_row(board, column):
     """Returns the row the piece would fall on."""
     for row in range(ROW_COUNT):
-        if board[row][column] == 0
-        return row
+        if board[row][column] == 0:
+            return row
 
 
 def drop_piece(board, row, column, piece):
     """Fill in the board column with whatever piece the player just dropped."""
-    board[row][column] == piece
+    board[row][column] = piece
 
 
 board = create_board()
+print(board)
 game_over = False
 turn = 0
 
@@ -38,12 +39,19 @@ while not game_over:
         column = int(input('Player 1 make your column selection (0-6): '))
         if not 0 <= column < 7:
             continue
+        if is_valid_column(board, column):
+            row = get_next_open_row(board, column)
+            drop_piece(board, row, column, 1)
 
     # Ask for Player 2 input
     else:
         column = int(input('Player 2 make your column selection (0-6): '))
         if not 0 <= column < 7:
             continue
+        if is_valid_column(board, column):
+            row = get_next_open_row(board, column)
+            drop_piece(board, row, column, 2)
 
+    print(board)
     turn += 1
     turn = turn % 2  # to alternate between player 1 and player 2
