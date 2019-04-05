@@ -11,11 +11,6 @@ def create_board():
     return board
 
 
-def drop_piece(board, row, column, piece):
-    """Entered input will drop a piece into Connect Four board."""
-    pass
-
-
 def is_valid_column(board, column):
     """Check to see if entered column has an empty spot for piece. Check this by making sure the top row of the board (5th row) contains 0 for the entered column."""
     return board[ROW_COUNT - 1][column] == 0
@@ -27,6 +22,10 @@ def get_next_open_row(board, column):
         if board[row][column] == 0
         return row
 
+
+def drop_piece(board, row, column, piece):
+    """Fill in the board column with whatever piece the player just dropped."""
+    board[row][column] == piece
 
 
 board = create_board()
