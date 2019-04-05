@@ -33,6 +33,16 @@ def print_board(board):
     print(np.flip(board, 0))
 
 
+def winning_move(board, piece):
+    """Stop game if player wins game. 
+    Note: This is not the most efficient method, but the simplest method to explain."""
+    # Check all horizontal locations
+    for col in range(COLUMN_COUNT):
+        for row in range(ROW_COUNT - 3):
+            if board[row][col] == piece and board[row][col+1] == piece and board[row][col+2] = piece and board[row][col+3] == piece:
+                game_over = True
+                return True
+
 board = create_board()
 print_board(board)
 game_over = False
