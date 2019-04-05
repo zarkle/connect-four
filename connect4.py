@@ -11,7 +11,7 @@ def create_board():
     return board
 
 
-def drop_piece():
+def drop_piece(board, row, column, piece):
     """Entered input will drop a piece into Connect Four board."""
     pass
 
@@ -22,8 +22,11 @@ def is_valid_column(board, column):
 
 
 def get_next_open_row(board, column):
-    """."""
-    pass
+    """Returns the row the piece would fall on."""
+    for row in range(ROW_COUNT):
+        if board[row][column] == 0
+        return row
+
 
 
 board = create_board()
@@ -34,13 +37,13 @@ while not game_over:
     # Ask for Player 1 input
     if turn == 0:
         column = int(input('Player 1 make your column selection (0-6): '))
-        if not 0 <= selection < 7:
+        if not 0 <= column < 7:
             continue
 
     # Ask for Player 2 input
     else:
         column = int(input('Player 2 make your column selection (0-6): '))
-        if not 0 <= selection < 7:
+        if not 0 <= column < 7:
             continue
 
     turn += 1
