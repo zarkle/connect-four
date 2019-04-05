@@ -1,9 +1,13 @@
 import numpy as np
 
 
+ROW_COUNT = 6
+COLUMN_COUNT = 7
+
+
 def create_board():
-    """Create x 6 x 7 Connect Four board."""
-    board = np.zeros((6, 7))
+    """Create a Connect Four board."""
+    board = np.zeros((ROW_COUNT, COLUMN_COUNT))
     return board
 
 
@@ -14,10 +18,10 @@ def drop_piece():
 
 def is_valid_column(board, column):
     """Check to see if entered column has an empty spot for piece. Check this by making sure the top row of the board (5th row) contains 0 for the entered column."""
-    return board[5][column] == 0
+    return board[ROW_COUNT - 1][column] == 0
 
 
-def get_next_open_row():
+def get_next_open_row(board, column):
     """."""
     pass
 
