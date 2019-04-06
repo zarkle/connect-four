@@ -1,3 +1,4 @@
+"""Connect Four Game"""
 import numpy as np
 
 
@@ -51,7 +52,7 @@ def winning_move(board, piece):
             if board[row][col] == piece and board[row+1][col] == piece and board[row+2][col] == piece and board[row+3][col] == piece:
                 game_over = True
                 return True
-    
+
     # Check positively sloped diagonals
     for col in range(COLUMN_COUNT - 3):
         for row in range(ROW_COUNT - 3):
