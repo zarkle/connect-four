@@ -35,7 +35,7 @@ def print_board(board):
 
 def winning_move(board, piece):
     """
-    Stop game if player wins game. 
+    Stop game if player wins game.
     Note: This is not the most efficient method, but the simplest method to explain.
     """
     # Check all horizontal locations
@@ -46,6 +46,11 @@ def winning_move(board, piece):
                 return True
 
     # Check all vertical locations
+    for col in range(COLUMN_COUNT):
+        for row in range(ROW_COUNT - 3):
+            if board[row][col] == piece and board[row+1][col] == piece and board[row+2][col] == piece and board[row+3][col] == piece:
+                game_over = True
+                return True
 
 board = create_board()
 print_board(board)
