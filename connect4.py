@@ -39,9 +39,11 @@ def winning_move(board, piece):
     # Check all horizontal locations
     for col in range(COLUMN_COUNT):
         for row in range(ROW_COUNT - 3):
-            if board[row][col] == piece and board[row][col+1] == piece and board[row][col+2] = piece and board[row][col+3] == piece:
+            if board[row][col] == piece and board[row][col+1] == piece and board[row][col+2] == piece and board[row][col+3] == piece:
                 game_over = True
                 return True
+
+    # Check all vertical locations
 
 board = create_board()
 print_board(board)
@@ -58,6 +60,10 @@ while not game_over:
             row = get_next_open_row(board, column)
             drop_piece(board, row, column, 1)
 
+            if winning_move(board, 1):
+                print('Player 1 is the winner!')
+                game_over = True
+
     # Ask for Player 2 input
     else:
         column = int(input('Player 2 make your column selection (0-6): '))
@@ -66,6 +72,10 @@ while not game_over:
         if is_valid_column(board, column):
             row = get_next_open_row(board, column)
             drop_piece(board, row, column, 2)
+
+            if winning_move(board, 2):
+                print('Player 2 is the winner!')
+                game_over = True
 
     print_board(board)
     turn += 1
