@@ -4,8 +4,11 @@ import pygame
 import sys
 
 
+# define width size
 ROW_COUNT = 6
 COLUMN_COUNT = 7
+# define colors (in RGB value):
+YELLOW = (255, 255, 0)
 
 
 def create_board():
@@ -69,6 +72,12 @@ def winning_move(board, piece):
                 game_over = True
                 return True
 
+
+def draw_board(board):
+    for column in range(COLUMN_COUNT):
+        for row in range(ROW_COUNT):
+            pygame.draw.rect(screen, YELLOW, (column * SQUARESIZE, row * SQUARESIZE + SQUARESIZE, SQUARESIZE, SQUARESIZE))
+
 board = create_board()
 print_board(board)
 game_over = False
@@ -78,7 +87,7 @@ turn = 0
 pygame.init()
 
 # define screen size (how big will the game be)
-# imagine board as a grid, define each square in pixels
+# imagine board as a grid, define each square in pixels (SQUARESIZE)
 SQUARESIZE = 100
 width = COLUMN_COUNT * SQUARESIZE
 height = (ROW_COUNT + 1) * SQUARESIZE
@@ -86,6 +95,9 @@ size = (width, height)
 
 # to get pygame to read it
 screen = pygame.display.set_mode(size)
+draw_board(board)
+# make sure to update display 
+pygame.display.update()
 
 # main game functionality
 while not game_over:
@@ -97,7 +109,7 @@ while not game_over:
 
         # click on column piece will drop in
         if event.type == pygame.MOUSEBUTTONDOWN:
-            print()
+            continue
             # Ask for Player 1 input
             if turn == 0:
                 column = int(input('Player 1 make your column selection (0-6): '))
