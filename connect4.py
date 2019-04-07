@@ -10,6 +10,7 @@ COLUMN_COUNT = 7
 # define colors (in RGB value):
 YELLOW = (255, 255, 0)
 BLACK = (0, 0, 0)
+RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 
 
@@ -79,7 +80,15 @@ def draw_board(board):
     for column in range(COLUMN_COUNT):
         for row in range(ROW_COUNT):
             pygame.draw.rect(screen, YELLOW, (column * SQUARESIZE, row * SQUARESIZE + SQUARESIZE, SQUARESIZE, SQUARESIZE))
-            pygame.draw.circle(screen, BLACK, (column * SQUARESIZE + SQUARESIZE // 2, row * SQUARESIZE + SQUARESIZE + SQUARESIZE // 2), RADIUS)
+            if board[row][column] == 0:  # empty position
+                pygame.draw.circle(screen, BLACK, (column * SQUARESIZE + SQUARESIZE // 2, row * SQUARESIZE + SQUARESIZE + SQUARESIZE // 2), RADIUS)
+            elif board[row][column] == 1:  # player 2 piece
+                pygame.draw.circle(screen, RED, (column * SQUARESIZE + SQUARESIZE // 2, row * SQUARESIZE + SQUARESIZE + SQUARESIZE // 2), RADIUS)
+            else:  # player 2 piece
+                pygame.draw.circle(screen, BLUE, (column * SQUARESIZE + SQUARESIZE // 2, row * SQUARESIZE + SQUARESIZE + SQUARESIZE // 2), RADIUS)
+    # re-render the screen with the new changes
+    pygame.display.update()
+
 
 board = create_board()
 print_board(board)
@@ -113,12 +122,12 @@ while not game_over:
 
         # click on column piece will drop in
         if event.type == pygame.MOUSEBUTTONDOWN:
-            continue
+            # print(event.pos)
             # Ask for Player 1 input
             if turn == 0:
-                column = int(input('Player 1 make your column selection (0-6): '))
-                if not 0 <= column < 7:
-                    continue
+                x_pos = event.pos[0]
+                column = x_pos // SQUARESIZE
+
                 if is_valid_column(board, column):
                     row = get_next_open_row(board, column)
                     drop_piece(board, row, column, 1)
@@ -129,9 +138,9 @@ while not game_over:
 
             # Ask for Player 2 input
             else:
-                column = int(input('Player 2 make your column selection (0-6): '))
-                if not 0 <= column < 7:
-                    continue
+                x_pos = event.pos[0]
+                column = x_pos // SQUARESIZE
+                
                 if is_valid_column(board, column):
                     row = get_next_open_row(board, column)
                     drop_piece(board, row, column, 2)
@@ -141,5 +150,6 @@ while not game_over:
                         game_over = True
 
             print_board(board)
+            draw_board(board)
             turn += 1
             turn = turn % 2  # to alternate between player 1 and player 2
