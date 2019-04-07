@@ -1,6 +1,5 @@
 """Connect Four Game"""
 import numpy as np
-import pygame
 
 
 ROW_COUNT = 6
@@ -73,20 +72,6 @@ print_board(board)
 game_over = False
 turn = 0
 
-# initialize pygame
-pygame.init()
-
-# define screen size (how big will the game be)
-# imagine board as a grid, define each square in pixels
-SQUARESIZE = 100
-width = COLUMN_COUNT * SQUARESIZE
-height = (ROW_COUNT + 1) * SQUARESIZE
-size = (width, height)
-
-# to get pygame to read it
-screen = pygame.display.set_mode(size)
-
-# main game functionality
 while not game_over:
     # Ask for Player 1 input
     if turn == 0:
