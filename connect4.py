@@ -80,12 +80,14 @@ def draw_board(board):
     for column in range(COLUMN_COUNT):
         for row in range(ROW_COUNT):
             pygame.draw.rect(screen, YELLOW, (column * SQUARESIZE, row * SQUARESIZE + SQUARESIZE, SQUARESIZE, SQUARESIZE))
-            if board[row][column] == 0:  # empty position
-                pygame.draw.circle(screen, BLACK, (column * SQUARESIZE + SQUARESIZE // 2, row * SQUARESIZE + SQUARESIZE + SQUARESIZE // 2), RADIUS)
-            elif board[row][column] == 1:  # player 2 piece
-                pygame.draw.circle(screen, RED, (column * SQUARESIZE + SQUARESIZE // 2, row * SQUARESIZE + SQUARESIZE + SQUARESIZE // 2), RADIUS)
-            else:  # player 2 piece
-                pygame.draw.circle(screen, BLUE, (column * SQUARESIZE + SQUARESIZE // 2, row * SQUARESIZE + SQUARESIZE + SQUARESIZE // 2), RADIUS)
+            pygame.draw.circle(screen, BLACK, (column * SQUARESIZE + SQUARESIZE // 2, row * SQUARESIZE + SQUARESIZE + SQUARESIZE // 2), RADIUS)
+    
+    for column in range(COLUMN_COUNT):
+        for row in range(ROW_COUNT):
+            if board[row][column] == 1:  # player 2 piece
+                pygame.draw.circle(screen, RED, (column * SQUARESIZE + SQUARESIZE // 2, height - (row * SQUARESIZE + SQUARESIZE // 2)), RADIUS)
+            elif board[row][column] == 2:  # player 2 piece
+                pygame.draw.circle(screen, BLUE, (column * SQUARESIZE + SQUARESIZE // 2, height - (row * SQUARESIZE + SQUARESIZE // 2)), RADIUS)
     # re-render the screen with the new changes
     pygame.display.update()
 
