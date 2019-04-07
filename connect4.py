@@ -9,6 +9,8 @@ ROW_COUNT = 6
 COLUMN_COUNT = 7
 # define colors (in RGB value):
 YELLOW = (255, 255, 0)
+BLACK = (0, 0, 0)
+BLUE = (0, 0, 255)
 
 
 def create_board():
@@ -77,6 +79,7 @@ def draw_board(board):
     for column in range(COLUMN_COUNT):
         for row in range(ROW_COUNT):
             pygame.draw.rect(screen, YELLOW, (column * SQUARESIZE, row * SQUARESIZE + SQUARESIZE, SQUARESIZE, SQUARESIZE))
+            pygame.draw.circle(screen, BLACK, (column * SQUARESIZE + SQUARESIZE // 2, row * SQUARESIZE + SQUARESIZE + SQUARESIZE // 2), RADIUS)
 
 board = create_board()
 print_board(board)
@@ -92,6 +95,7 @@ SQUARESIZE = 100
 width = COLUMN_COUNT * SQUARESIZE
 height = (ROW_COUNT + 1) * SQUARESIZE
 size = (width, height)
+RADIUS = int(SQUARESIZE // 2 - 5)
 
 # to get pygame to read it
 screen = pygame.display.set_mode(size)
