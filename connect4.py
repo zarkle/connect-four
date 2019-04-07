@@ -97,6 +97,7 @@ while not game_over:
 
         # click on column piece will drop in
         if event.type == pygame.MOUSEBUTTONDOWN:
+            print()
             # Ask for Player 1 input
             if turn == 0:
                 column = int(input('Player 1 make your column selection (0-6): '))
