@@ -121,6 +121,17 @@ while not game_over:
         # always have this in games to allow user to quit properly when close game
         if event.type == pygame.QUIT:
             sys.exit()
+        
+        # draw the pieces in the top row (above board) for the current player
+        if event.type == pygame.MOUSEMOTION:
+            # draw a black rectangle to cover any previously drawn circles (to clear the row above the board)
+            pygame.draw.rect(screen, BLACK, (0, 0, width, SQUARESIZE))
+            x_pos = event.pos[0]
+            if turn == 0:  # player 1 turn
+                pygame.draw.circle(screen, RED, (x_pos, SQUARESIZE // 2), RADIUS)
+            else:  # player 2 turn
+                pygame.draw.circle(screen, BLUE, (x_pos, SQUARESIZE // 2), RADIUS)
+        pygame.display.update()
 
         # click on column piece will drop in
         if event.type == pygame.MOUSEBUTTONDOWN:
