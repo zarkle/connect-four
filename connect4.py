@@ -154,6 +154,11 @@ while not game_over:
                         # update a specific part of the screen instead of update the entire display
                         screen.blit(label, (40, 10))
                         game_over = True
+                else:
+                    print('Invalid move')
+                    label = myfont.render('Invalid move, try again', 1, RED)
+                    screen.blit(label, (40, 10))
+                    turn -= 1
 
             # Ask for Player 2 input
             else:
@@ -170,6 +175,11 @@ while not game_over:
                         # update a specific part of the screen instead of update the entire display
                         screen.blit(label, (40, 10))
                         game_over = True
+                else:
+                    print('Invalid move')
+                    label = myfont.render('Invalid move, try again', 1, BLUE)
+                    screen.blit(label, (40, 10))
+                    turn -= 1
 
             print_board(board)
             draw_board(board)
